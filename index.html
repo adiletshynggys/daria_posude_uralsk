@@ -1,76 +1,79 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-  <meta charset="UTF-8" />
-  <title>Daria Posuda</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  https://cdn.tailwindcss.com
-</head>
-<body class="bg-gray-50 text-gray-800">
+export default function Website() {
+  const categories = [
+    { ru: "Мантоварка", kz: "Манты пісіргіш", price: "от 12 000 ₸", image: "https://via.placeholder.com/400x300" },
+    { ru: "Сервизы", kz: "Ас сервиздері", price: "от 18 000 ₸", image: "https://via.placeholder.com/400x300" },
+    { ru: "Кастрюли", kz: "Кәстрөлдер", price: "от 9 000 ₸", image: "https://via.placeholder.com/400x300" },
+    { ru: "Чайники", kz: "Шәйнектер", price: "от 8 000 ₸", image: "https://via.placeholder.com/400x300" },
+    { ru: "Хлебница", kz: "Нан салғыш", price: "от 7 000 ₸", image: "https://via.placeholder.com/400x300" }
+  ];
 
-<header class="bg-white shadow-md sticky top-0">
-  <div class="max-w-6xl mx-auto flex justify-between items-center p-4">
-    <h1 class="text-2xl font-bold">Daria Posuda</h1>
-    <a class="text-pink-600 font-medium"
-       href="https://www.instagram.com/daria_posuda_uralsk/" target="_blank">
-       Instagram
-    </a>
-  </div>
-</header>
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-rose-50 via-white to-amber-50 text-gray-800">
+      <header className="backdrop-blur bg-white/70 sticky top-0 z-10 shadow-sm">
+        <div className="max-w-7xl mx-auto flex justify-between items-center p-5">
+          <h1 className="text-2xl font-extrabold tracking-wide">Daria Posuda</h1>
+          https://www.instagram.com/daria_posuda_uralsk/
+        </div>
+      </header>
 
-<main class="max-w-6xl mx-auto p-6">
+      <main className="max-w-7xl mx-auto px-6">
+        <section className="text-center py-20">
+          <h2 className="text-5xl font-bold mb-6">Посуда с характером</h2>
+          <p className="text-xl text-gray-600 mb-3">Красиво • Качественно • Практично</p>
+          <p className="text-lg text-gray-500 mb-6">Сапалы • Әдемі • Ыңғайлы</p>
+          <a
+            href="https://www.instagram.com/daria_posuda_uralsk/"
+            className="inline-block bg-pink-600 text-white px-8 py-4 rounded-full shadow-lg hover:bg-pink-700 transition"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Смотреть каталог
+          </a>
+        </section>
 
-<section class="mt-10 text-center">
-  <h2 class="text-4xl font-bold mb-4">Посуда для каждого дома</h2>
-  <h3 class="text-2xl font-semibold mb-6">Әр үйге арналған ыдыс-аяқ</h3>
-  <p class="text-lg mb-6">
-    Качественная посуда для дома и подарков<br>
-    Сапалы тұрмыстық және сыйлыққа арналған ыдыстар
-  </p>
-</section>
+        <section className="pb-24">
+          <h3 className="text-4xl font-bold text-center mb-14">Каталог товаров • Тауарлар</h3>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
+            {categories.map((item, i) => (
+              <div
+                key={i}
+                className="group rounded-3xl bg-white shadow-md hover:shadow-xl transition overflow-hidden"
+              >
+                <div className="overflow-hidden">
+                  <img
+                    src={item.image}
+                    alt={item.ru}
+                    className="h-64 w-full object-cover group-hover:scale-105 transition"
+                  />
+                </div>
+                <div className="p-6 text-center">
+                  <h4 className="text-xl font-semibold">{item.ru}</h4>
+                  <p className="text-sm text-gray-500">{item.kz}</p>
+                  <p className="mt-3 text-lg font-bold text-pink-600">{item.price}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
 
-<section class="mt-16">
-  <h2 class="text-3xl font-bold mb-8 text-center">
-    Каталог товаров • Тауарлар каталоги
-  </h2>
+        <section className="bg-white rounded-3xl shadow-lg p-12 text-center mb-24">
+          <h3 className="text-3xl font-bold mb-6">Контакты • Байланыс</h3>
+          <p className="text-lg">📍 Уральск</p>
+          <p className="text-lg mb-4">📲 Заказы через Instagram / Instagram арқылы тапсырыс</p>
+          <a
+            href="https://www.instagram.com/daria_posuda_uralsk/"
+            className="text-pink-600 text-xl font-semibold"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            @daria_posuda_uralsk
+          </a>
+        </section>
+      </main>
 
-  <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
-
-    <!-- ITEM -->
-    <div class="bg-white rounded-xl shadow">
-      <img src="https://via.placeholder.com/300x200" class="w-full h-48 object-cover">
-      <div class="p-4">
-        <h3 class="font-semibold">Мантоварка</h3>
-        <p class="text-sm text-gray-500">Манты пісіргіш</p>
-        <p class="mt-2 font-bold text-pink-600">от 12 000 ₸</p>
-      </div>
+      <footer className="bg-gray-900 text-gray-300 py-6 text-center">
+        © 2026 Daria Posuda
+      </footer>
     </div>
-
-    <div class="bg-white rounded-xl shadow">
-      <img src="https://via.placeholder.com/300x200" class="w-full h-48 object-cover">
-      <div class="p-4">
-        <h3 class="font-semibold">Сервизы</h3>
-        <p class="text-sm text-gray-500">Ас сервиздері</p>
-        <p class="mt-2 font-bold text-pink-600">от 18 000 ₸</p>
-      </div>
-    </div>
-
-    <!-- You can duplicate blocks for more items -->
-
-  </div>
-</section>
-
-<section class="mt-16 bg-white rounded-xl shadow p-8 text-center">
-  <h2 class="text-2xl font-bold mb-4">Контакты • Байланыс</h2>
-  <p>📍 Уральск</p>
-  <p>📲 Заказы через Instagram Direct</p>
-</section>
-
-</main>
-
-<footer class="mt-20 bg-gray-800 text-white text-center p-4">
-  © 2026 Daria Posuda
-</footer>
-
-</body>
-</html>
+  );
+}

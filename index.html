@@ -1,179 +1,1378 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <title>Daria Posuda Uralsk</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DARIA POSUDA — Изысканная посуда, Уральск</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Cinzel:wght@400;600;700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --midnight: #0d0b0e;
+      --deep: #13101a;
+      --card: #1a1524;
+      --border: #2e2440;
+      --gold: #c9a84c;
+      --gold-light: #e8cc7a;
+      --gold-dim: #7a6128;
+      --cream: #f5ede0;
+      --cream-dim: #c4b49a;
+      --white: #ffffff;
+      --ruby: #7a1f2e;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--midnight);
+      color: var(--cream);
+      font-family: 'EB Garamond', Georgia, serif;
+      overflow-x: hidden;
+      cursor: default;
+    }
+
+    /* ── NOISE TEXTURE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1000;
+      opacity: 0.35;
+    }
+
+    /* ══ NAV ══ */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 900;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 4rem;
+      background: linear-gradient(to bottom, rgba(13,11,14,0.98) 0%, rgba(13,11,14,0) 100%);
+      backdrop-filter: blur(2px);
+    }
+
+    .nav-logo {
+      font-family: 'Cinzel', serif;
+      font-size: 1.05rem;
+      letter-spacing: 0.3em;
+      color: var(--gold);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: 'Cinzel', serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      color: var(--cream-dim);
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover { color: var(--gold-light); }
+
+    .nav-cta {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      color: var(--midnight);
+      background: var(--gold);
+      padding: 0.6rem 1.4rem;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: background 0.3s;
+    }
+
+    .nav-cta:hover { background: var(--gold-light); }
+
+    /* ══ HERO ══ */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      position: relative;
+      overflow: hidden;
+      padding: 6rem 2rem 4rem;
+    }
+
+    /* Radial gold glow */
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 80vw; height: 80vw;
+      background: radial-gradient(ellipse at center,
+        rgba(201,168,76,0.09) 0%,
+        rgba(201,168,76,0.04) 35%,
+        transparent 70%);
+      pointer-events: none;
+    }
+
+    /* decorative corner lines */
+    .hero-frame {
+      position: absolute;
+      inset: 3rem;
+      pointer-events: none;
+    }
+
+    .hero-frame::before, .hero-frame::after,
+    .hero-frame span::before, .hero-frame span::after {
+      content: '';
+      position: absolute;
+      width: 60px; height: 60px;
+      border-color: var(--gold-dim);
+      border-style: solid;
+    }
+
+    .hero-frame::before {
+      top: 0; left: 0;
+      border-width: 1px 0 0 1px;
+    }
+    .hero-frame::after {
+      top: 0; right: 0;
+      border-width: 1px 1px 0 0;
+    }
+    .hero-frame span::before {
+      bottom: 0; left: 0;
+      border-width: 0 0 1px 1px;
+    }
+    .hero-frame span::after {
+      bottom: 0; right: 0;
+      border-width: 0 1px 1px 0;
+    }
+
+    .hero-inner {
+      position: relative;
+      text-align: center;
+      max-width: 860px;
+    }
+
+    .hero-eyebrow {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.45em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    .hero-eyebrow::before, .hero-eyebrow::after {
+      content: '';
+      display: block;
+      width: 40px;
+      height: 1px;
+      background: var(--gold-dim);
+    }
+
+    .hero-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(3rem, 10vw, 7.5rem);
+      font-weight: 700;
+      line-height: 0.9;
+      letter-spacing: 0.04em;
+      color: var(--cream);
+      margin-bottom: 0.2em;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      color: var(--gold);
+      font-size: 1.15em;
+    }
+
+    .hero-subtitle {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+      color: var(--cream-dim);
+      margin: 1.8rem 0 3rem;
+      letter-spacing: 0.04em;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1.2rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      font-family: 'Cinzel', serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--midnight);
+      background: var(--gold);
+      padding: 1rem 2.4rem;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+      display: inline-block;
+    }
+
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+    .btn-secondary {
+      font-family: 'Cinzel', serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      background: transparent;
+      padding: 1rem 2.4rem;
+      text-decoration: none;
+      border: 1px solid var(--gold-dim);
+      cursor: pointer;
+      transition: border-color 0.3s, color 0.3s, transform 0.2s;
+      display: inline-block;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--gold);
+      color: var(--gold-light);
+      transform: translateY(-2px);
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'Cinzel', serif;
+      font-size: 0.55rem;
+      letter-spacing: 0.3em;
+      color: var(--gold-dim);
+      text-transform: uppercase;
+    }
+
+    .hero-scroll-line {
+      width: 1px;
+      height: 50px;
+      background: linear-gradient(to bottom, var(--gold-dim), transparent);
+      animation: scrollLine 2s ease-in-out infinite;
+    }
+
+    @keyframes scrollLine {
+      0%, 100% { opacity: 0.3; transform: scaleY(1); }
+      50% { opacity: 1; transform: scaleY(0.6); }
+    }
+
+    /* ══ DIVIDER ══ */
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      padding: 0 4rem;
+    }
+
+    .divider-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--border), transparent);
+    }
+
+    .divider-ornament {
+      color: var(--gold);
+      font-size: 1.2rem;
+    }
+
+    /* ══ SECTION SHARED ══ */
+    section { padding: 7rem 4rem; }
+
+    .section-label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.45em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .section-label::before {
+      content: '';
+      display: block;
+      width: 30px;
+      height: 1px;
+      background: var(--gold-dim);
+    }
+
+    .section-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1.8rem, 4vw, 3.2rem);
+      font-weight: 600;
+      color: var(--cream);
+      line-height: 1.15;
+      margin-bottom: 1.5rem;
+    }
+
+    .section-title em {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      color: var(--gold);
+      font-weight: 300;
+    }
+
+    /* ══ ABOUT ══ */
+    .about {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .about-text p {
+      font-size: 1.15rem;
+      line-height: 1.85;
+      color: var(--cream-dim);
+      margin-bottom: 1.2rem;
+    }
+
+    .about-text p strong {
+      color: var(--cream);
+      font-weight: 500;
+    }
+
+    .about-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+
+    .stat-box {
+      border: 1px solid var(--border);
+      padding: 1.5rem;
+      position: relative;
+    }
+
+    .stat-box::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 30px; height: 2px;
+      background: var(--gold);
+    }
+
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.8rem;
+      font-weight: 300;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+
+    .stat-label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      color: var(--cream-dim);
+      text-transform: uppercase;
+    }
+
+    .about-visual {
+      position: relative;
+    }
+
+    .about-img-frame {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 3/4;
+      background: var(--card);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Decorative plate illustration */
+    .about-img-frame svg {
+      width: 70%;
+      opacity: 0.7;
+    }
+
+    .about-img-frame::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg,
+        rgba(201,168,76,0.05) 0%,
+        transparent 50%,
+        rgba(201,168,76,0.03) 100%);
+    }
+
+    .about-frame-accent {
+      position: absolute;
+      top: -1.5rem;
+      right: -1.5rem;
+      width: 120px;
+      height: 120px;
+      border: 1px solid var(--gold-dim);
+      pointer-events: none;
+    }
+
+    .about-frame-accent2 {
+      position: absolute;
+      bottom: -1.5rem;
+      left: -1.5rem;
+      width: 80px;
+      height: 80px;
+      border: 1px solid var(--gold-dim);
+      pointer-events: none;
+    }
+
+    /* ══ CATEGORIES ══ */
+    #catalogue { background: var(--deep); }
+
+    .categories-header {
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto 4rem;
+    }
+
+    .categories-header .section-label {
+      justify-content: center;
+    }
+
+    .categories-header .section-label::before { display: none; }
+
+    .categories-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .cat-card {
+      position: relative;
+      background: var(--card);
+      padding: 3rem 2.5rem;
+      border: 1px solid var(--border);
+      overflow: hidden;
+      cursor: pointer;
+      transition: border-color 0.4s;
+      group: '';
+    }
+
+    .cat-card::before {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 100%; height: 2px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+      transform: scaleX(0);
+      transition: transform 0.4s ease;
+    }
+
+    .cat-card:hover { border-color: var(--gold-dim); }
+    .cat-card:hover::before { transform: scaleX(1); }
+
+    .cat-card:hover .cat-icon { color: var(--gold-light); }
+    .cat-card:hover .cat-name { color: var(--gold-light); }
+
+    .cat-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      color: var(--gold);
+      transition: color 0.3s;
+      display: block;
+    }
+
+    .cat-num {
+      position: absolute;
+      top: 1.5rem;
+      right: 2rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 4rem;
+      font-weight: 300;
+      color: var(--border);
+      line-height: 1;
+      transition: color 0.3s;
+    }
+
+    .cat-card:hover .cat-num { color: rgba(201,168,76,0.12); }
+
+    .cat-name {
+      font-family: 'Cinzel', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--cream);
+      margin-bottom: 0.8rem;
+      transition: color 0.3s;
+    }
+
+    .cat-desc {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: var(--cream-dim);
+    }
+
+    /* ══ FEATURED PRODUCTS ══ */
+    .products-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      max-width: 1200px;
+      margin: 0 auto 3rem;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .product-card {
+      border: 1px solid var(--border);
+      background: var(--card);
+      overflow: hidden;
+      transition: border-color 0.3s, transform 0.3s;
+      cursor: pointer;
+    }
+
+    .product-card:hover {
+      border-color: var(--gold-dim);
+      transform: translateY(-4px);
+    }
+
+    .product-img {
+      width: 100%;
+      aspect-ratio: 1;
+      background: var(--deep);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .product-img::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center,
+        rgba(201,168,76,0.06) 0%,
+        transparent 70%);
+    }
+
+    .product-img-icon {
+      font-size: 4rem;
+      opacity: 0.4;
+    }
+
+    .product-info {
+      padding: 1.3rem;
+    }
+
+    .product-tag {
+      font-family: 'Cinzel', serif;
+      font-size: 0.55rem;
+      letter-spacing: 0.25em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+
+    .product-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      color: var(--cream);
+      margin-bottom: 0.6rem;
+      line-height: 1.3;
+    }
+
+    .product-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 0.8rem;
+      padding-top: 0.8rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .product-price {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      color: var(--gold);
+    }
+
+    .product-btn {
+      font-family: 'Cinzel', serif;
+      font-size: 0.55rem;
+      letter-spacing: 0.2em;
+      color: var(--cream-dim);
+      background: transparent;
+      border: 1px solid var(--border);
+      padding: 0.4rem 0.8rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+
+    .product-btn:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    /* ══ BANNER / QUOTE ══ */
+    .quote-section {
+      background: var(--card);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 6rem 4rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .quote-section::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(201,168,76,0.05) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .quote-mark {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 6rem;
+      line-height: 0.5;
+      color: var(--gold-dim);
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+
+    .quote-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: clamp(1.4rem, 3vw, 2.2rem);
+      color: var(--cream);
+      max-width: 750px;
+      margin: 0 auto 1.5rem;
+      line-height: 1.6;
+    }
+
+    .quote-attr {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      color: var(--gold);
+      text-transform: uppercase;
+    }
+
+    /* ══ INSTAGRAM ══ */
+    .instagram-section { background: var(--midnight); }
+
+    .instagram-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .instagram-header .section-label {
+      justify-content: center;
+    }
+
+    .instagram-header .section-label::before { display: none; }
+
+    .instagram-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0.4rem;
+      max-width: 1200px;
+      margin: 0 auto 2.5rem;
+    }
+
+    .insta-tile {
+      aspect-ratio: 1;
+      background: var(--card);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      opacity: 0.5;
+      transition: opacity 0.3s, border-color 0.3s;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .insta-tile:hover {
+      opacity: 1;
+      border-color: var(--gold-dim);
+    }
+
+    .insta-tile::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg,
+        rgba(201,168,76,0.1) 0%,
+        transparent 50%);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .insta-tile:hover::after { opacity: 1; }
+
+    .instagram-cta {
+      text-align: center;
+    }
+
+    /* ══ CONTACT ══ */
+    #contact { background: var(--deep); }
+
+    .contact-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .contact-info h3 {
+      font-family: 'Cinzel', serif;
+      font-size: 1rem;
+      color: var(--gold);
+      letter-spacing: 0.2em;
+      margin-bottom: 2rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 1.8rem;
+      padding-bottom: 1.8rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .contact-item:last-child {
+      border-bottom: none;
+    }
+
+    .contact-icon {
+      font-size: 1.4rem;
+      color: var(--gold);
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+
+    .contact-detail-label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.25em;
+      color: var(--gold-dim);
+      text-transform: uppercase;
+      margin-bottom: 0.3rem;
+    }
+
+    .contact-detail-value {
+      font-size: 1rem;
+      color: var(--cream);
+      line-height: 1.5;
+    }
+
+    .contact-detail-value a {
+      color: var(--cream);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .contact-detail-value a:hover { color: var(--gold-light); }
+
+    .contact-form-wrapper h3 {
+      font-family: 'Cinzel', serif;
+      font-size: 1rem;
+      color: var(--gold);
+      letter-spacing: 0.2em;
+      margin-bottom: 2rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-family: 'Cinzel', serif;
+      font-size: 0.58rem;
+      letter-spacing: 0.25em;
+      color: var(--cream-dim);
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--cream);
+      font-family: 'EB Garamond', serif;
+      font-size: 1rem;
+      padding: 0.8rem 1rem;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: var(--gold-dim);
+    }
+
+    .form-group textarea { height: 100px; resize: vertical; }
+
+    /* ══ FOOTER ══ */
+    footer {
+      background: var(--midnight);
+      border-top: 1px solid var(--border);
+      padding: 4rem 4rem 2rem;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 4rem;
+      margin-bottom: 3rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .footer-brand-name {
+      font-family: 'Cinzel', serif;
+      font-size: 1.5rem;
+      letter-spacing: 0.3em;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+
+    .footer-tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--cream-dim);
+      line-height: 1.7;
+      max-width: 280px;
+    }
+
+    .footer-col h4 {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+    }
+
+    .footer-col ul { list-style: none; }
+
+    .footer-col ul li {
+      margin-bottom: 0.7rem;
+    }
+
+    .footer-col ul a {
+      font-family: 'EB Garamond', serif;
+      font-size: 0.95rem;
+      color: var(--cream-dim);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .footer-col ul a:hover { color: var(--gold-light); }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-copy {
+      font-family: 'Cinzel', serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      color: var(--gold-dim);
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .footer-social a {
+      width: 36px;
+      height: 36px;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--cream-dim);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: all 0.3s;
+    }
+
+    .footer-social a:hover {
+      border-color: var(--gold-dim);
+      color: var(--gold);
+    }
+
+    /* ══ ANIMATIONS ══ */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-eyebrow { animation: fadeUp 0.8s ease both; animation-delay: 0.2s; }
+    .hero-title   { animation: fadeUp 0.8s ease both; animation-delay: 0.4s; }
+    .hero-subtitle { animation: fadeUp 0.8s ease both; animation-delay: 0.6s; }
+    .hero-buttons { animation: fadeUp 0.8s ease both; animation-delay: 0.8s; }
+
+    /* ══ ORNAMENTAL LINE ══ */
+    .ornamental-divider {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 4rem;
+    }
+
+    .ornamental-divider .line {
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .ornamental-divider .diamond {
+      width: 8px;
+      height: 8px;
+      border: 1px solid var(--gold-dim);
+      transform: rotate(45deg);
+      flex-shrink: 0;
+    }
+
+    /* ══ MOBILE ══ */
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      section { padding: 5rem 1.5rem; }
+
+      .about { grid-template-columns: 1fr; gap: 3rem; }
+      .about-visual { order: -1; }
+      .about-img-frame { aspect-ratio: 16/9; }
+
+      .categories-grid { grid-template-columns: 1fr; }
+      .products-grid { grid-template-columns: repeat(2, 1fr); }
+      .instagram-grid { grid-template-columns: repeat(3, 1fr); }
+      .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+      .products-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+      .hero-frame { inset: 1.2rem; }
+    }
+  </style>
 </head>
+<body>
 
-<body id="page"
-  class="min-h-screen transition-colors duration-500
-         bg-gradient-to-br from-emerald-950 via-emerald-900 to-black
-         text-emerald-50">
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">DARIA POSUDA</a>
+    <ul class="nav-links">
+      <li><a href="#about">О нас</a></li>
+      <li><a href="#catalogue">Каталог</a></li>
+      <li><a href="#collection">Коллекции</a></li>
+      <li><a href="#contact">Контакт</a></li>
+    </ul>
+    <a href="https://www.instagram.com/daria_posuda_uralsk/" target="_blank" class="nav-cta">Instagram</a>
+  </nav>
 
-<!-- HEADER -->
-<header class="sticky top-0 z-10 bg-black/70 backdrop-blur border-b border-emerald-400/40">
-  <div class="max-w-7xl mx-auto px-6 py-5 flex flex-col gap-4 md:flex-row md:justify-between md:items-center">
-    <h1 class="text-3xl font-extrabold tracking-widest uppercase text-emerald-300">
-      Daria Posuda Uralsk
-    </h1>
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-frame"><span></span></div>
 
-    <!-- THEME SWITCHER -->
-    <div class="flex flex-wrap gap-2 text-sm">
-      <button class="themeBtn" onclick="setTheme('emerald')">Emerald 👑</button>
-      <button class="themeBtn" onclick="setTheme('black')">Black 🖤</button>
-      <button class="themeBtn" onclick="setTheme('white')">White 🤍</button>
-      <button class="themeBtn" onclick="setTheme('rose')">Rose 🌸</button>
-      <button class="themeBtn" onclick="setTheme('midnight')">Midnight 🌙</button>
+    <div class="hero-inner">
+      <div class="hero-eyebrow">Уральск · Казахстан · с любовью</div>
+
+      <h1 class="hero-title">
+        DARIA<br/><em>Posuda</em>
+      </h1>
+
+      <p class="hero-subtitle">
+        Изысканная посуда для королевского стола.<br/>
+        Красота, достоинство и изящество в каждом изделии.
+      </p>
+
+      <div class="hero-buttons">
+        <a href="#catalogue" class="btn-primary">Смотреть каталог</a>
+        <a href="https://www.instagram.com/daria_posuda_uralsk/" target="_blank" class="btn-secondary">Instagram</a>
+      </div>
     </div>
+
+    <div class="hero-scroll">
+      <div class="hero-scroll-line"></div>
+      <span>Листайте</span>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="about">
+      <div class="about-text">
+        <div class="section-label">О нас</div>
+        <h2 class="section-title">Традиции<br/><em>изысканного вкуса</em></h2>
+        <p>
+          Мы — небольшой семейный бизнес из <strong>Уральска</strong>, который с любовью и страстью занимается подбором и продажей красивой посуды. Каждый предмет в нашей коллекции отобран вручную.
+        </p>
+        <p>
+          Наша цель — помочь вам превратить каждый обед в <strong>настоящий ритуал</strong>. Потому что красивая посуда — это не просто утварь, это настроение, атмосфера и радость.
+        </p>
+        <p>
+          Мы предлагаем сервизы, тарелки, бокалы, чайники, подносы и многое другое — для дома, в подарок или для особого случая.
+        </p>
+
+        <div class="about-stats">
+          <div class="stat-box">
+            <div class="stat-num">500+</div>
+            <div class="stat-label">Товаров</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">1K+</div>
+            <div class="stat-label">Довольных клиентов</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">5★</div>
+            <div class="stat-label">Рейтинг</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">100%</div>
+            <div class="stat-label">Качество</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-visual">
+        <div class="about-img-frame">
+          <!-- Decorative SVG plate illustration -->
+          <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" fill="none">
+            <circle cx="100" cy="100" r="90" stroke="#c9a84c" stroke-width="0.5" opacity="0.5"/>
+            <circle cx="100" cy="100" r="75" stroke="#c9a84c" stroke-width="1" opacity="0.3"/>
+            <circle cx="100" cy="100" r="55" stroke="#c9a84c" stroke-width="0.5" opacity="0.4"/>
+            <circle cx="100" cy="100" r="38" fill="rgba(201,168,76,0.04)" stroke="#c9a84c" stroke-width="1.5" opacity="0.6"/>
+            <!-- Ornamental petals -->
+            <g opacity="0.5" stroke="#c9a84c" stroke-width="0.6" fill="rgba(201,168,76,0.06)">
+              <ellipse cx="100" cy="62" rx="6" ry="16" />
+              <ellipse cx="100" cy="138" rx="6" ry="16" />
+              <ellipse cx="62" cy="100" rx="16" ry="6" />
+              <ellipse cx="138" cy="100" rx="16" ry="6" />
+              <ellipse cx="73" cy="73" rx="6" ry="16" transform="rotate(-45 73 73)" />
+              <ellipse cx="127" cy="127" rx="6" ry="16" transform="rotate(-45 127 127)" />
+              <ellipse cx="127" cy="73" rx="6" ry="16" transform="rotate(45 127 73)" />
+              <ellipse cx="73" cy="127" rx="6" ry="16" transform="rotate(45 73 127)" />
+            </g>
+            <circle cx="100" cy="100" r="12" fill="rgba(201,168,76,0.15)" stroke="#c9a84c" stroke-width="1.5" opacity="0.7"/>
+            <circle cx="100" cy="100" r="5" fill="#c9a84c" opacity="0.6"/>
+            <!-- Rim dots -->
+            <g fill="#c9a84c" opacity="0.4">
+              <circle cx="100" cy="12" r="1.5"/><circle cx="131" cy="20" r="1.5"/>
+              <circle cx="155" cy="45" r="1.5"/><circle cx="165" cy="78" r="1.5"/>
+              <circle cx="157" cy="111" r="1.5"/><circle cx="133" cy="138" r="1.5"/>
+              <circle cx="100" cy="150" r="1.5"/><circle cx="67" cy="138" r="1.5"/>
+              <circle cx="43" cy="111" r="1.5"/><circle cx="35" cy="78" r="1.5"/>
+              <circle cx="45" cy="45" r="1.5"/><circle cx="69" cy="20" r="1.5"/>
+            </g>
+          </svg>
+        </div>
+        <div class="about-frame-accent"></div>
+        <div class="about-frame-accent2"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIVIDER -->
+  <div class="ornamental-divider">
+    <div class="line"></div>
+    <div class="diamond"></div>
+    <div class="diamond"></div>
+    <div class="diamond"></div>
+    <div class="line"></div>
   </div>
-</header>
 
-<main class="max-w-7xl mx-auto px-6">
+  <!-- CATEGORIES -->
+  <section id="catalogue">
+    <div class="categories-header">
+      <div class="section-label">Каталог</div>
+      <h2 class="section-title">Наши <em>категории</em></h2>
+    </div>
 
-<!-- HERO -->
-<section class="text-center py-20">
-  <h2 class="text-5xl md:text-6xl font-extrabold mb-4">
-    Посуда для дома и подарков
-  </h2>
-  <p class="text-lg md:text-xl text-emerald-200 mb-6">
-    Качество • Стиль • Практичность
-  </p>
+    <div class="categories-grid">
+      <div class="cat-card">
+        <span class="cat-num">01</span>
+        <span class="cat-icon">🍽</span>
+        <div class="cat-name">Сервизы</div>
+        <p class="cat-desc">Полные обеденные и чайные сервизы для торжественного и повседневного стола.</p>
+      </div>
+      <div class="cat-card">
+        <span class="cat-num">02</span>
+        <span class="cat-icon">🥂</span>
+        <div class="cat-name">Бокалы и фужеры</div>
+        <p class="cat-desc">Хрустальные и стеклянные бокалы — для вина, шампанского и воды.</p>
+      </div>
+      <div class="cat-card">
+        <span class="cat-num">03</span>
+        <span class="cat-icon">☕</span>
+        <div class="cat-name">Чайный уголок</div>
+        <p class="cat-desc">Чашки, чайники, заварники и подносы для уютного чаепития.</p>
+      </div>
+      <div class="cat-card">
+        <span class="cat-num">04</span>
+        <span class="cat-icon">🫕</span>
+        <div class="cat-name">Кастрюли и сковороды</div>
+        <p class="cat-desc">Стильная кухонная утварь из премиальных материалов.</p>
+      </div>
+      <div class="cat-card">
+        <span class="cat-num">05</span>
+        <span class="cat-icon">🎁</span>
+        <div class="cat-name">Подарочные наборы</div>
+        <p class="cat-desc">Красиво упакованные наборы — идеальный подарок на любой праздник.</p>
+      </div>
+      <div class="cat-card">
+        <span class="cat-num">06</span>
+        <span class="cat-icon">🌸</span>
+        <div class="cat-name">Декор и вазы</div>
+        <p class="cat-desc">Вазы, подсвечники и декоративные предметы для изысканного интерьера.</p>
+      </div>
+    </div>
+  </section>
 
-  <div class="flex justify-center gap-4 flex-wrap">
-    <a href="https://www.instagram.com/daria_posuda_uralsk/"
-       target="_blank"
-       class="bg-pink-500 text-black px-6 py-3 rounded-full font-bold hover:scale-105 transition">
-      Instagram
-    </a>
-
-    <a href="https://wa.me/77470817281"
-       target="_blank"
-       class="bg-green-500 text-black px-6 py-3 rounded-full font-bold hover:scale-105 transition">
-      WhatsApp заказ
-    </a>
-  </div>
-</section>
-
-<!-- CATEGORY TABS -->
-<section class="mb-12 text-center">
-  <div class="flex justify-center gap-4 flex-wrap">
-    <button class="tabBtn" onclick="showTab('boards')">Доски</button>
-    <button class="tabBtn" onclick="showTab('manty')">Мантоварка</button>
-    <button class="tabBtn" onclick="showTab('pots')">Кастрюли</button>
-    <button class="tabBtn" onclick="showTab('sets')">Сервизы</button>
-  </div>
-</section>
-
-<!-- ======== ДОСКИ ======== -->
-
-<div class="bg-black/50 rounded-3xl overflow-hidden shadow-2xl border border-emerald-400/30">
-
-  <img
-    src="images/cutting_boards.jpeg"
-    alt="Разделочная доска Leevan"
-    class="w-full h-64 object-cover"
-  />
-
-  <div class="p-6 text-center">
-    <h3 class="text-xl font-semibold">
-      Разделочная доска Leevan
-    </h3>
-
-    <p class="text-emerald-300 mt-1">
-      от 9 500 ₸
+  <!-- QUOTE -->
+  <div class="quote-section">
+    <span class="quote-mark">"</span>
+    <p class="quote-text">
+      Красивая посуда — это не роскошь. Это ежедневная радость, которую вы дарите себе и своим близким.
     </p>
-
-    <a
-      href="https://wa.me/77470817281"
-      target="_blank"
-      class="inline-block mt-4 bg-green-500 text-black px-6 py-2 rounded-full font-bold hover:scale-105 transition"
-    >
-      Заказать в WhatsApp
-    </a>
+    <span class="quote-attr">— Дарья, основатель Daria Posuda</span>
   </div>
-</div>
 
+  <!-- FEATURED -->
+  <section id="collection">
+    <div class="products-header">
+      <div>
+        <div class="section-label">Коллекция</div>
+        <h2 class="section-title">Избранные <em>изделия</em></h2>
+      </div>
+      <a href="https://www.instagram.com/daria_posuda_uralsk/" target="_blank" class="btn-secondary">Смотреть всё →</a>
+    </div>
 
-</section>
+    <div class="products-grid">
+      <div class="product-card">
+        <div class="product-img"><span class="product-img-icon">🫖</span></div>
+        <div class="product-info">
+          <div class="product-tag">Чайный</div>
+          <div class="product-name">Чайный сервиз «Белая роза»</div>
+          <div class="product-footer">
+            <span class="product-price">Уточнить цену</span>
+            <a href="https://www.instagram.com/daria_posuda_uralsk/" target="_blank" class="product-btn">Узнать</a>
+          </div>
+        </div>
+      </div>
 
-<!-- EMPTY SECTIONS (ready for products) -->
-<section id="manty" class="productGrid hidden"></section>
-<section id="pots" class="productGrid hidden"></section>
-<section id="sets" class="productGrid hidden"></section>
+      <div class="product-card">
+        <div class="product-img"><span class="product-img-icon">🍽</span></div>
+        <div class="product-info">
+          <div class="product-tag">Обеденный</div>
+          <div class="product-name">Сервиз «Золотая кайма» на 6 персон</div>
+          <div class="product-footer">
+            <span class="product-price">Уточнить цену</span>
+            <a href="https://www.instagram.com/daria_posuda_uralsk/" target="_blank" class="product-btn">Узнать</a>
+          </div>
+        </div>
+      </div>
 
-</main>
+      <div class="product-card">
+        <div class="product-img"><span class="product-img-icon">🥂</span></div>
+        <div class="product-info">
+          <div class="product-tag">Хрусталь</div>
+          <div class="product-name">Набор бокалов для вина (6 шт)</div>
+          <div class="product-footer">
+            <span class="product-price">Уточнить цену</span>
+            <a href="https://www.instagram.com/daria_posuda_uralsk/" target="_blank" class="product-btn">Узнать</a>
+          </div>
+        </div>
+      </div>
 
-<footer class="text-center py-6 text-sm text-emerald-300 border-t border-emerald-400/30">
-  © 2026 Daria Posuda Uralsk
-</footer>
+      <div class="product-card">
+        <div class="product-img"><span class="product-img-icon">🎁</span></div>
+        <div class="product-info">
+          <div class="product-tag">Подарок</div>
+          <div class="product-name">Подарочный набор «Королевский ужин»</div>
+          <div class="product-footer">
+            <span class="product-price">Уточнить цену</span>
+            <a href="https://www.instagram.com/daria_posuda_uralsk/" target="_blank" class="product-btn">Узнать</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<!-- STYLES -->
-<style>
-.themeBtn {
-  border:1px solid rgba(52,211,153,.6);
-  padding:.4rem .8rem;
-  border-radius:9999px;
-  color:#6ee7b7;
-  font-weight:600;
-}
-.themeBtn:hover{background:#10b981;color:#000}
+  <!-- INSTAGRAM -->
+  <section class="instagram-section">
+    <div class="instagram-header">
+      <div class="section-label">Instagram</div>
+      <h2 class="section-title">Следите <em>за нами</em></h2>
+      <p style="font-size:1.05rem;color:var(--cream-dim);margin-top:0.5rem;">@daria_posuda_uralsk — новинки, акции и вдохновение каждый день</p>
+    </div>
 
-.tabBtn{
-  border:1px solid rgba(255,255,255,.3);
-  padding:.6rem 1.4rem;
-  border-radius:9999px;
-  font-weight:600;
-}
+    <div class="instagram-grid">
+      <div class="insta-tile">🍽</div>
+      <div class="insta-tile">🫖</div>
+      <div class="insta-tile">🥂</div>
+      <div class="insta-tile">🌸</div>
+      <div class="insta-tile">🎁</div>
+    </div>
 
-.productGrid{
-  display:grid;
-  gap:2.5rem;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  padding-bottom:4rem;
-}
+    <div class="instagram-cta">
+      <a href="https://www.instagram.com/daria_posuda_uralsk/" target="_blank" class="btn-primary">Открыть Instagram</a>
+    </div>
+  </section>
 
-.productCard{
-  background:rgba(0,0,0,.5);
-  border-radius:1.5rem;
-  overflow:hidden;
-  box-shadow:0 25px 50px -12px rgba(0,0,0,.35);
-}
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="contact-inner">
+      <div class="contact-info">
+        <div class="section-label">Контакт</div>
+        <h2 class="section-title">Свяжитесь<br/><em>с нами</em></h2>
 
-.orderBtn{
-  display:inline-block;
-  margin-top:1rem;
-  background:#22c55e;
-  padding:.6rem 1.4rem;
-  border-radius:9999px;
-  font-weight:700;
-  color:black;
-}
-</style>
+        <div class="contact-item">
+          <span class="contact-icon">📍</span>
+          <div>
+            <div class="contact-detail-label">Город</div>
+            <div class="contact-detail-value">Уральск, Казахстан</div>
+          </div>
+        </div>
 
-<!-- SCRIPTS -->
-<script>
-function showTab(id){
-  document.querySelectorAll('.productGrid').forEach(s=>s.classList.add('hidden'));
-  document.getElementById(id).classList.remove('hidden');
-}
+        <div class="contact-item">
+          <span class="contact-icon">📸</span>
+          <div>
+            <div class="contact-detail-label">Instagram</div>
+            <div class="contact-detail-value">
+              <a href="https://www.instagram.com/daria_posuda_uralsk/" target="_blank">@daria_posuda_uralsk</a>
+            </div>
+          </div>
+        </div>
 
-function setTheme(theme){
-  const b=document.getElementById('page');
-  b.className='min-h-screen transition-colors duration-500';
+        <div class="contact-item">
+          <span class="contact-icon">💬</span>
+          <div>
+            <div class="contact-detail-label">Заказы и вопросы</div>
+            <div class="contact-detail-value">Пишите в Instagram Direct<br/>— ответим быстро!</div>
+          </div>
+        </div>
 
-  const themes={
-    emerald:['bg-gradient-to-br','from-emerald-950','via-emerald-900','to-black','text-emerald-50'],
-    black:['bg-black','text-gray-100'],
-    white:['bg-stone-100','text-gray-900'],
-    rose:['bg-gradient-to-br','from-rose-100','via-rose-50','to-amber-50','text-gray-800'],
-    midnight:['bg-gradient-to-br','from-slate-950','via-indigo-950','to-black','text-indigo-100']
-  };
+        <div class="contact-item">
+          <span class="contact-icon">🕐</span>
+          <div>
+            <div class="contact-detail-label">Режим работы</div>
+            <div class="contact-detail-value">Пн–Вс · 9:00 — 20:00</div>
+          </div>
+        </div>
+      </div>
 
-  themes[theme].forEach(c=>b.classList.add(c));
-}
-</script>
+      <div class="contact-form-wrapper">
+        <h3>Оставить сообщение</h3>
+        <div class="form-group">
+          <label>Ваше имя</label>
+          <input type="text" placeholder="Как вас зовут?" />
+        </div>
+        <div class="form-group">
+          <label>Телефон / Instagram</label>
+          <input type="text" placeholder="+7 ..." />
+        </div>
+        <div class="form-group">
+          <label>Интересующий товар</label>
+          <input type="text" placeholder="Чайный сервиз, бокалы и т.д." />
+        </div>
+        <div class="form-group">
+          <label>Сообщение</label>
+          <textarea placeholder="Расскажите подробнее…"></textarea>
+        </div>
+        <a href="https://www.instagram.com/daria_posuda_uralsk/" target="_blank" class="btn-primary" style="width:100%;display:block;text-align:center;margin-top:0.5rem;">
+          Написать в Instagram
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand-name">DARIA POSUDA</div>
+        <p class="footer-tagline">Изысканная посуда для тех, кто ценит красоту каждого мгновения.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Разделы</h4>
+        <ul>
+          <li><a href="#about">О нас</a></li>
+          <li><a href="#catalogue">Каталог</a></li>
+          <li><a href="#collection">Коллекции</a></li>
+          <li><a href="#contact">Контакт</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Категории</h4>
+        <ul>
+          <li><a href="#catalogue">Сервизы</a></li>
+          <li><a href="#catalogue">Бокалы и фужеры</a></li>
+          <li><a href="#catalogue">Чайный уголок</a></li>
+          <li><a href="#catalogue">Подарочные наборы</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2025 DARIA POSUDA · Уральск · Все права защищены</div>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/daria_posuda_uralsk/" target="_blank" title="Instagram">📸</a>
+      </div>
+    </div>
+  </footer>
 
 </body>
 </html>
